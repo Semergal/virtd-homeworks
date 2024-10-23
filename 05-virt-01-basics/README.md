@@ -15,7 +15,7 @@
 7. Удалите ВМ или пользуйтесь ею при выполнении последующих домашних заданий курса обучения.
 
 ---
-![alt text](https://github.com/Semergal/sdb-homeworks/blob/sdbsql-24/img/13-02/Screenshot_1.jpg)
+![alt text](https://github.com/Semergal/virtd-homeworks/blob/shvirtd-1/05-virt-01-basics/img/Screenshot_1.jpg)
 
 ## Задача 2
 
