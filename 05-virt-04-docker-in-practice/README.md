@@ -68,6 +68,10 @@ See 'snap info docker' for additional versions.
 
 6. Остановите проект. В качестве ответа приложите скриншот sql-запроса.
 
+![alt text](https://github.com/Semergal/virtd-homeworks/blob/shvirtd-1/05-virt-04-docker-in-practice/img/Screenshot_3.jpg)
+
+
+
 ## Задача 4
 1. Запустите в Yandex Cloud ВМ (вам хватит 2 Гб Ram).
 2. Подключитесь к Вм по ssh и установите docker.
@@ -75,6 +79,20 @@ See 'snap info docker' for additional versions.
 4. Зайдите на сайт проверки http подключений, например(или аналогичный): ```https://check-host.net/check-http``` и запустите проверку вашего сервиса ```http://<внешний_IP-адрес_вашей_ВМ>:8090```. Таким образом трафик будет направлен в ingress-proxy. ПРИМЕЧАНИЕ:  приложение(old_main.py) весьма вероятно упадет под нагрузкой, но успеет обработать часть запросов - этого достаточно. Обновленная версия (main.py) не прошла достаточного тестирования временем, но должна справиться с нагрузкой.
 5. (Необязательная часть) Дополнительно настройте remote ssh context к вашему серверу. Отобразите список контекстов и результат удаленного выполнения ```docker ps -a```
 6. В качестве ответа повторите  sql-запрос и приложите скриншот с данного сервера, bash-скрипт и ссылку на fork-репозиторий.
+
+```
+#!/bin/bash
+cd /opt
+git clone https://ww123-readonly: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@github.com/WilderWein123/05-virt-04-docker-in-practice
+cd /opt/05-virt-04-docker-in-practice/shvirtd-example-python
+docker compose up -d
+
+```
+https://github.com/Semergal/virtd-homeworks/tree/shvirtd-1/05-virt-04-docker-in-practice
+
+![alt text](https://github.com/Semergal/virtd-homeworks/blob/shvirtd-1/05-virt-04-docker-in-practice/img/Screenshot_4.jpg)
+
+![alt text](https://github.com/Semergal/virtd-homeworks/blob/shvirtd-1/05-virt-04-docker-in-practice/img/Screenshot_5.jpg)
 
 ## Задача 5 (*)
 1. Напишите и задеплойте на вашу облачную ВМ bash скрипт, который произведет резервное копирование БД mysql в директорию "/opt/backup" с помощью запуска в сети "backend" контейнера из образа ```schnitzler/mysqldump``` при помощи ```docker run ...``` команды. Подсказка: "документация образа."
@@ -86,9 +104,28 @@ See 'snap info docker' for additional versions.
 Скачайте docker образ ```hashicorp/terraform:latest``` и скопируйте бинарный файл ```/bin/terraform``` на свою локальную машину, используя dive и docker save.
 Предоставьте скриншоты  действий .
 
+docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive:latest hashicorp/terraform:lates
+
+Ставим фильтр terraform
+Выбираем слой и находим бинарник - sha256:c3c3a5978391c2884975a1e49c4d3ee1e29dac201a59bf27685a1b750ad5e64a
+
+docker save hashicorp/terraform:latest -o /opt/terraform/terraform-saved
+tar -xvf terraform-saved
+c3c3a5978391c2884975a1e49c4d3ee1e29dac201a59bf27685a1b750ad5e64a
+cd blobs/sha256/
+tar -xvf c3c3a5978391c2884975a1e49c4d3ee1e29dac201a59bf27685a1b750ad5e64a
+
+![alt text](https://github.com/Semergal/virtd-homeworks/blob/shvirtd-1/05-virt-04-docker-in-practice/img/Screenshot_6.jpg)
 ## Задача 6.1
 Добейтесь аналогичного результата, используя docker cp.  
 Предоставьте скриншоты  действий .
+
+
+docker run -d hashicorp/terraform
+docker ps -a
+docker cp cda06e9ba524:/bin/terraform /opt/terraform/
+
+![alt text](https://github.com/Semergal/virtd-homeworks/blob/shvirtd-1/05-virt-04-docker-in-practice/img/Screenshot_7.jpg)
 
 ## Задача 6.2 (**)
 Предложите способ извлечь файл из контейнера, используя только команду docker build и любой Dockerfile.  
