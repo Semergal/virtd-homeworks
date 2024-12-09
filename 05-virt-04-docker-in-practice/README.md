@@ -86,7 +86,6 @@ cd /opt
 git clone https://github.com/Semergal/virtd-homeworks/tree/shvirtd-1/05-virt-04-docker-in-practice
 cd /opt/05-virt-04-docker-in-practice/shvirtd-example-python
 docker compose up -d
-
 ```
 
 
