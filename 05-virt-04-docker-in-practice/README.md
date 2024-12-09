@@ -83,12 +83,12 @@ See 'snap info docker' for additional versions.
 ```
 #!/bin/bash
 cd /opt
-git clone https://ww123-readonly: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@github.com/WilderWein123/05-virt-04-docker-in-practice
+git clone https://github.com/Semergal/virtd-homeworks/tree/shvirtd-1/05-virt-04-docker-in-practice
 cd /opt/05-virt-04-docker-in-practice/shvirtd-example-python
 docker compose up -d
 
 ```
-https://github.com/Semergal/virtd-homeworks/tree/shvirtd-1/05-virt-04-docker-in-practice
+
 
 ![alt text](https://github.com/Semergal/virtd-homeworks/blob/shvirtd-1/05-virt-04-docker-in-practice/img/Screenshot_4.jpg)
 
